@@ -21,12 +21,20 @@ function handleSubmit(e) {
     todos.push(newTodo);
     createTodo(newTodo);
     input.value = '';
+    saveTodos();
+}
+function saveTodos() {
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 function createTodo(todo) {
     const newLi = document.createElement('li');
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.checked = todo.completed;
+    checkBox.addEventListener('change', function () {
+        todo.completed = checkBox.checked;
+        saveTodos();
+    });
     newLi.append(todo.text);
     newLi.append(checkBox);
     list.append(newLi);
