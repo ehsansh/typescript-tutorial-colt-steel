@@ -8,7 +8,16 @@ interface Todo {
     completed: boolean;
 }
 
-let todos: Todo[] = [];
+function readTodos(): Todo[] {
+    const todosText = localStorage.getItem('todos');
+    if (todosText) {
+        return JSON.parse(todosText);
+    }
+    return [];
+}
+
+let todos: Todo[] = readTodos();
+todos.forEach(createTodo);
 
 function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
@@ -19,6 +28,7 @@ function handleSubmit(e: SubmitEvent) {
     todos.push(newTodo);
     createTodo(newTodo);
     input.value = '';
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function createTodo(todo: Todo) {
