@@ -13,3 +13,7 @@ function getRandomElement(items) {
 }
 getRandomElement(['s', 'g', 'd']);
 getRandomElement([1, 2, 3, 4]);
+function merge(obj1, obj2) {
+    return Object.assign(Object.assign({}, obj1), obj2);
+}
+console.log(merge({ name: 'ehsan', job: 'developer' }, [1, 2, 3, 4, 5]));
