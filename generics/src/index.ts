@@ -45,3 +45,24 @@ function makeEmptyArray<T = number>(): T[] {
 const numbers = makeEmptyArray();
 const booleans = makeEmptyArray<boolean>();
 const strings = makeEmptyArray<string>();
+
+interface Song {
+    singer: string;
+    poem: string;
+    composer: string;
+}
+
+interface Video {
+    producer: string;
+    director: string;
+}
+
+class PlayList<T> {
+    public queue: T[] = [];
+    add(el: T) {
+        this.queue.push(el);
+    }
+}
+
+const songs = new PlayList<Song>();
+const videos = new PlayList<Video>();
