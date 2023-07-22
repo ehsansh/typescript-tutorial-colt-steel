@@ -37,3 +37,11 @@ interface lengthy {
 function printDoubleLength<T extends lengthy>(thing: T): number {
     return thing.length * 2;
 }
+
+function makeEmptyArray<T = number>(): T[] {
+    return [];
+}
+
+const numbers = makeEmptyArray();
+const booleans = makeEmptyArray<boolean>();
+const strings = makeEmptyArray<string>();
