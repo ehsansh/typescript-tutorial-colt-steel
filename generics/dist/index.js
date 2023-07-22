@@ -7,3 +7,9 @@ function genericExmaple(item) {
 }
 genericExmaple('hi');
 genericExmaple(12);
+function getRandomElement(items) {
+    const index = Math.floor(Math.random() * items.length);
+    return items[index];
+}
+getRandomElement(['s', 'g', 'd']);
+getRandomElement([1, 2, 3, 4]);
