@@ -1,51 +1,62 @@
-'use strict';
-
+"use strict";
 class Player {
-    static text =
-        'static property only exists on the class not in its instances';
-    #score = 0;
-    mark = 0;
     constructor(first, last) {
+        this._score = 0;
         this.first = first;
         this.last = last;
+    }
+    secretMethod() {
+        console.log('secret!!');
     }
     get fullName() {
         return `${this.first} ${this.last}`;
     }
-    get mark() {
-        return this.mark;
+    get score() {
+        return this._score;
     }
-    set mark(newMark) {
-        if (newMark < 0) throw new Error('mark should be positive');
-        this.mark = newMark;
-    }
-    say() {
-        console.log('hello');
-    }
-    addScore() {
-        this.#score++;
-    }
-    getScore() {
-        return this.#score;
+    set score(val) {
+        if (val < 0)
+            throw new Error('it should be a positive number');
+        this._score = val;
     }
 }
-
-const player1 = new Player('ehsan', 'shad');
-// player1.say();
-// console.log(player1);
-// player1.addScore();
-// console.log(player1.getScore());
-console.log(player1.fullName);
-player1.mark = 10;
-console.log(player1.mark);
-
-class Admin extends Player {
-    constructor(first, last, powers) {
+const ehsan = new Player('ehsan', 'shad');
+console.log(ehsan.fullName);
+class SuperPlayer extends Player {
+    constructor() {
+        super(...arguments);
+        this.isAdmin = true;
+    }
+    maxScore() {
+        this._score = 999;
+    }
+}
+class Bike {
+    constructor(color) {
+        this.color = color;
+    }
+}
+const bike1 = new Bike('green');
+class Jacket {
+    constructor(color) {
+        this.color = color;
+    }
+    print() {
+        console.log('this a jacket');
+    }
+}
+class Employee {
+    constructor(first, last) {
+        this.first = first;
+        this.last = last;
+    }
+}
+class FullTimeEmployee extends Employee {
+    constructor(first, last, salary) {
         super(first, last);
-        this.powers = powers;
+        this.salary = salary;
     }
-    isAdmin = true;
+    getPay() {
+        return this.salary;
+    }
 }
-
-const admin = new Admin('jack', 'london', 'powers');
-console.log(admin);
