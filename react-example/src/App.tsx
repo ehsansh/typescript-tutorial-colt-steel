@@ -6,27 +6,14 @@ import ShoppingList from './components/ShoppingList';
 
 import { Item } from './models/item';
 import ShoppingListForm from './components/ShoppingListForm';
+import { v4 as getId } from 'uuid';
 
 function App() {
     const [items, setItems] = useState<Item[]>([]);
 
-    const addItem = function (product: string) {
-        console.log(product);
+    const addItem = function (product: string, quantity: number) {
+        setItems([...items, { id: getId(), product, quantity }]);
     };
-
-    // const items = [
-    //     {
-    //         id: 1,
-    //         product: 'lemon',
-    //         quantity: 3,
-    //     },
-    //     {
-    //         id: 2,
-    //         product: 'chickek breast',
-    //         quantity: 2,
-    //     },
-    // ];
-
     return (
         <div>
             <ShoppingList items={items} />
