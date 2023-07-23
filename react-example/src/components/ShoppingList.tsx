@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface Item {
-    product: string;
-    id: number;
-    quantity: number;
-}
+import { Item } from '../models/item';
 
 interface ShoppingListProps {
     items: Item[];
